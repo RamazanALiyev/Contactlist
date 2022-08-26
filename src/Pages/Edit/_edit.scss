@@ -1,0 +1,160 @@
+.Edit {
+	.getToContacts {
+		color: rgb(166, 203, 240);
+		font-style: italic;
+		cursor: pointer;
+		display: inline-block;
+		margin: 20px 50px 0px;
+		padding-bottom: 1px;
+		text-decoration: none;
+		border-bottom: 1px dashed rgb(166, 203, 240);
+	}
+	form {
+		height: calc(100vh - 12rem);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		div {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			table {
+				border: 1px solid orange;
+				border-radius: 10px;
+				display: flex;
+				flex-direction: column;
+				width: 30%;
+				height: 100%;
+				margin: 0 10px;
+				padding: 0 10px;
+				tr {
+					display: flex;
+					flex-direction: column;
+					margin: 10px 0;
+					td {
+						label {
+							cursor: pointer;
+							font-family: Euclid Circular A;
+							font-size: 12px;
+							color: #2e3a59;
+						}
+						input {
+							width: 100%;
+							background: #f7f9fc;
+							border: 1px solid rgb(255, 165, 0, .3);
+							border-radius: 8px;
+							padding: 12px 10px;
+							outline: none;
+							&:focus {
+								border: 1px solid rgb(255, 165, 0, .8);
+							}
+						}
+						textarea {
+							width: 100%;
+							padding: 12px 10px;
+							height: 205px;
+							border-radius: 8px;
+							background: #f7f9fc;
+							border: 1px solid orange;
+							outline: none;
+						}
+					}
+				}
+				tr.agreeWithApp {
+					td {
+						display: flex;
+						align-items: center;
+					}
+					input.cb {
+						cursor: pointer;
+						appearance: none;
+						width: 26px;
+						height: 26px;
+						border: 1px solid green;
+						border-radius: 5px;
+						position: relative;
+						margin-right: 10px;
+						&:checked {
+							background-color: green;
+							&::after {
+								content: "✓";
+								color: #fff;
+								position: absolute;
+								top: 10%;
+								left: 50%;
+								transform: translateX(-50%);
+							}
+						}
+					}
+				}
+			}
+			table.occupation {
+				tr {
+					td {
+						display: flex;
+						align-items: center;
+						margin: 3px 0;
+						label {
+							font-size: 14px;
+						}
+						input.cb {
+							cursor: pointer;
+							appearance: none;
+							width: 26px;
+							height: 26px;
+							border: 1px solid #00a3ff;
+							border-radius: 5px;
+							position: relative;
+							margin-right: 10px;
+							&:checked {
+								background-color: #00a3ff;
+								&::after {
+									content: "✓";
+									color: #fff;
+									position: absolute;
+									top: 10%;
+									left: 50%;
+									transform: translateX(-50%);
+								}
+							}
+						}
+						input.radio {
+							cursor: pointer;
+							appearance: none;
+							width: 26px;
+							height: 26px;
+							border: 1px solid #00a3ff;
+							border-radius: 50%;
+							position: relative;
+							margin-right: 10px;
+							&:checked {
+								background-color: #00a3ff;
+								&::after {
+									content: "✓";
+									color: #fff;
+									position: absolute;
+									top: 10%;
+									left: 50%;
+									transform: translateX(-50%);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		button {
+			background: orange;
+			border-radius: 8px;
+			font-family: Euclid Circular A;
+			text-align: center;
+			color: #000;
+			padding: 14px 36px;
+			margin: 20px auto;
+			width: 93%;
+			cursor: pointer;
+            font-size: 18px;
+            letter-spacing: 2px;
+		}
+	}
+}
