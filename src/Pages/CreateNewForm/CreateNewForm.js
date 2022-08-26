@@ -1,26 +1,21 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import "./_createnewform.scss";
 import { Link } from "react-router-dom";
 import reducer from "../../utils/addToNewContacts";
-import { nanoid } from "nanoid";
 
 function CreateNewForm() {
-	const id = nanoid();
 	const [initailVal, setInitialVal] = useState({
 		name: "",
 		surname: "",
 		dadName: "",
 		mail: "",
-		occupation: [],
-		gender: "",
+		occupation: 'Front-End Developer',
+		gender: "Kişi",
 		additionalInformation: "",
 		newAlertsInfo: false,
-		id: id
 	});
-	const [contact, dispatch] = useReducer(reducer, initailVal);
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch({ type: "addToNewContact"});
 	};
 	console.log(initailVal);
 	return (
@@ -102,59 +97,38 @@ function CreateNewForm() {
 							</tr>
 						</tbody>
 					</table>
-					<table className="occupation">
-						<tbody>
-							<tr>
-								<td>
-									<label>Vəzifə</label>
-								</td>
-								<td>
-									<input
-										className="cb"
-										defaultChecked
-										id="id1"
-										type="checkbox"
-									/>
-									<label htmlFor="id1">Front-End Developer</label>
-								</td>
-								<td>
-									<input className="cb" id="id2" type="checkbox" />
-									<label htmlFor="id2">Back-End Developer</label>
-								</td>
-								<td>
-									<input className="cb" id="id3" type="checkbox" />
-									<label htmlFor="id3">Full Stack Developer</label>
-								</td>
-								<td>
-									<input className="cb" id="id4" type="checkbox" />
-									<label htmlFor="id4">React Native Developer</label>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label>Cinsiyyət</label>
-								</td>
-								<td>
-									<input
-										name="gender"
-										className="radio"
-										id="id5"
-										type="radio"
-									/>
-									<label htmlFor="id5">Kişi</label>
-								</td>
-								<td>
-									<input
-										name="gender"
-										className="radio"
-										id="id6"
-										type="radio"
-									/>
-									<label htmlFor="id6">Qadın</label>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					<div className="centerAddOccupyandGender">
+						<div className="occupation">
+							<label htmlFor="occupationChoose">Vəzifə:</label>
+							<select onChange={(e) =>
+								setInitialVal((initailVal) => ({
+									...initailVal,
+									occupation: e.target.value,
+								}))
+							} id='occupationChoose'>
+								<optgroup label="Vəzifəniz:">
+									<option value="Front-End Developer">Front-End Developer</option>
+									<option value="Back-End Developer">Back-End Developer</option>
+									<option value="Full Stact Developer">Full Stact Developer</option>
+									<option value="Node JS MERN Developer">Node JS MERN Developer</option>
+								</optgroup>
+							</select>
+						</div>
+						<div className="gender">
+							<label htmlFor="genderChoose">Cinsiyyət:</label>
+							<select onChange={(e) =>
+								setInitialVal((initailVal) => ({
+									...initailVal,
+									gender: e.target.value,
+								}))
+							} id="genderChoose">
+								<optgroup label="Cinsiyyət:">
+									<option value="Kişi">Kişi</option>
+									<option value="Qadın">Qadın</option>
+								</optgroup>
+							</select>
+						</div>
+					</div>
 					<table>
 						<tbody>
 							<tr>
@@ -200,3 +174,32 @@ function CreateNewForm() {
 }
 
 export default CreateNewForm;
+
+
+
+// {/* <tr>
+// 	<td>
+// 		<label>Vəzifə</label>
+// 	</td>
+// 	<td>
+// 		<input
+// 			className="cb"
+// 			defaultChecked
+// 			id="id1"
+// 			type="checkbox"
+// 		/>
+// 		<label htmlFor="id1">Front-End Developer</label>
+// 	</td>
+// 	<td>
+// 		<input className="cb" id="id2" type="checkbox" />
+// 		<label htmlFor="id2">Back-End Developer</label>
+// 	</td>
+// 	<td>
+// 		<input className="cb" id="id3" type="checkbox" />
+// 		<label htmlFor="id3">Full Stack Developer</label>
+// 	</td>
+// 	<td>
+// 		<input className="cb" id="id4" type="checkbox" />
+// 		<label htmlFor="id4">React Native Developer</label>
+// 	</td>
+// </tr> */}
