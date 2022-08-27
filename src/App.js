@@ -9,12 +9,24 @@ import Edit from "./Pages/Edit/Edit";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import { Toaster } from "react-hot-toast";
 import DetailInformationEachContact from "./Pages/DetailInfo/DetailInfo";
+import { nanoid } from "nanoid";
 function App() {
 	const [contacts, setContacts] = useState(
 		JSON.parse(localStorage.getItem("contacts")) || []
 	);
-	const [eachNewIdContact, setEachNewIdContact] = useState();
-	const data = { contacts, setContacts, eachNewIdContact, setEachNewIdContact };
+	const id = nanoid();
+	const [initailVal, setInitialVal] = useState({
+		name: "",
+		surname: "",
+		dadName: "",
+		mail: "",
+		occupation: "Front-End Developer",
+		gender: "Kişi",
+		additionalInformation: "",
+		newAlertsInfo: false,
+		id: id,
+	});
+	const data = { contacts, setContacts, initailVal, setInitialVal };
 	return (
 		<MainContext.Provider value={data}>
 			<Toaster position="bottom-right"
@@ -37,7 +49,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/contacts" element={<Contacts />} />
 				<Route path="/contacts/new" element={<CreateNewForm />} />
-				<Route path="/contacts/edit" element={<Edit />} />
+				<Route path="/contacts/edit:id" element={<Edit />} />
 				<Route path="/contacts/detail:id" element={<DetailInformationEachContact />} />
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>

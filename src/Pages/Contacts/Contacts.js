@@ -8,22 +8,26 @@ import { useContext, MainContext } from "../../context";
 import { toast } from "react-hot-toast";
 
 function Contacts() {
-	const { contacts, setContacts, setEachNewIdContact } = useContext(MainContext);
+	const { contacts, setContacts } = useContext(MainContext);
 	useEffect(() => {
 		localStorage.setItem("contacts", JSON.stringify(contacts));
-	}, []);
-	const handleEdit = (contact) => {
-		setEachNewIdContact(contact)
-	}
+	}, [contacts]);
 	const handleDelete = (id) => {
-		const deleted = contacts.filter((contact) => contact.id !== id)
-		setContacts(deleted)
-		console.log(contacts)
+		const deleted = contacts.filter((contact) => contact.id !== id);
+		setContacts(deleted);
+		console.log(contacts);
 		localStorage.setItem("contacts", JSON.stringify(deleted));
-		toast.error('Mövcud əlaqə silinmişdir!')
-	}
+		toast.error("Mövcud əlaqə silinmişdir!");
+	};
 	return (
 		<div className="ContactsPage">
+			{contacts.length === 0 ? (
+				<p className="countContactList">Əlaqələr siyahısı boşdur!</p>
+			) : (
+				<p className="countContactList">
+					Əlaqələr siyahısı {contacts.length} nəfərdən ibarətdir!
+				</p>
+			)}
 			<table className="contacts">
 				<thead>
 					<tr>
@@ -37,27 +41,39 @@ function Contacts() {
 					</tr>
 				</thead>
 				<tbody>
-					{contacts.length === 0 ? <tr className="emptyContactList"><td>Əlaqələr siyahısı boşdur!</td></tr> : contacts.map((contact, index) => (
-						<tr key={index}>
-							<td>{contact.name}</td>
-							<td>{contact.surname}</td>
-							<td>{contact.dadName}</td>
-							<td>{contact.occupation}</td>
-							<td className="info">
-								<Link className="infoClass" to={`/contacts/detail${contact.id}`}>
-									<BsInfoCircle className="icon" />
-								</Link>
-							</td>
-							<td className="edit">
-								<Link onClick={()=> handleEdit(contact)} to="/contacts/edit">
-									<GrFormEdit className="icon" />
-								</Link>
-							</td>
-							<td className="delete">
-								<AiTwotoneDelete onClick={() => handleDelete(contact.id)} className="icon" />
-							</td>
+					{contacts.length === 0 ? (
+						<tr className="emptyContactList">
+							<td>Əlaqələr siyahısı boşdur!</td>
 						</tr>
-					))}
+					) : (
+						contacts.map((contact, index) => (
+							<tr key={index}>
+								<td>{contact.name}</td>
+								<td>{contact.surname}</td>
+								<td>{contact.dadName}</td>
+								<td>{contact.occupation}</td>
+								<td className="info">
+									<Link
+										className="infoClass"
+										to={`/contacts/detail${contact.id}`}
+									>
+										<BsInfoCircle className="icon" />
+									</Link>
+								</td>
+								<td className="edit">
+									<Link to={`/contacts/edit${contact.id}`}>
+										<GrFormEdit className="icon" />
+									</Link>
+								</td>
+								<td className="delete">
+									<AiTwotoneDelete
+										onClick={() => handleDelete(contact.id)}
+										className="icon"
+									/>
+								</td>
+							</tr>
+						))
+					)}
 				</tbody>
 			</table>
 		</div>

@@ -4,6 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 
 function Header() {
 	const params = useLocation();
+	console.log(params)
 	return (
 		<div className="Header">
 			{params.pathname === "/contacts" && (
@@ -12,7 +13,7 @@ function Header() {
 			{params.pathname === "/contacts/new" && (
 				<span className="HeaderTextTitle">Yeni əlaqələrin yaradılması</span>
 			)}
-			{params.pathname === "/contacts/edit" && (
+			{params.pathname.includes("/contacts/edit") && (
 				<span className="HeaderTextTitle">Mövcud əlaqənin dəyişdirilməsi</span>
 			)}
 			{params.pathname.includes("/contacts/detail") && (
@@ -21,7 +22,7 @@ function Header() {
 			{params.pathname !== "/contacts" &&
 				params.pathname !== "/contacts/new" &&
 				!params.pathname.includes("/contacts/detail") &&
-				params.pathname !== "/contacts/edit" && (
+				!params.pathname.includes("/contacts/edit") && (
 					<span className="HeaderTextTitle">Belə bir səhifə mövcud deyil</span>
 				)}
 			<Link className="link" to="contacts/new">

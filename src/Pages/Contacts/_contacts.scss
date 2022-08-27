@@ -1,16 +1,19 @@
 .ContactsPage {
 	width: 100%;
 	display: flex;
-	justify-content: center;
-
+	flex-direction: column;
+	p.countContactList{
+		margin: 40px 80px 30px;
+		font-size: 22px;
+	}
 	table.contacts {
-		margin-top: 80px;
+		margin-top: 20px;
 		border-collapse: collapse;
 		display: flex;
 		flex-direction: column;
 		width: 90%;
 		border: 1px solid black;
-
+		margin: 0 auto;
 		thead {
 			tr {
 				display: block;

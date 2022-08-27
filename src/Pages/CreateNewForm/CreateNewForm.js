@@ -1,14 +1,13 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer } from "react";
 import "./_createnewform.scss";
 import { Link, useNavigate } from "react-router-dom";
 import reducer from "../../utils/addToNewContacts";
 import { useContext, MainContext } from "../../context";
 import { nanoid } from "nanoid";
-import toast, { Toaster } from 'react-hot-toast';
-
+import { toast } from "react-hot-toast";
 
 function CreateNewForm() {
-	const id = nanoid()
+	const id = nanoid();
 	let navigate = useNavigate();
 	const { contacts, setContacts } = useContext(MainContext);
 	const [initailVal, setInitialVal] = useState({
@@ -20,16 +19,16 @@ function CreateNewForm() {
 		gender: "Kişi",
 		additionalInformation: "",
 		newAlertsInfo: false,
-		id: id
+		id: id,
 	});
-	const [state, dispatch] = useReducer(reducer, initailVal);
+	const [, dispatch] = useReducer(reducer, initailVal);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch({
 			type: "addToNewContact",
 			payload: setContacts([...contacts, initailVal]),
 		});
-		toast.success('Əlaqələr siyahısına yeni əlaqə əlavə edildi!')
+		toast.success("Əlaqələr siyahısına yeni əlaqə əlavə edildi!");
 		navigate("/contacts");
 	};
 
