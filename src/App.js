@@ -8,7 +8,7 @@ import CreateNewForm from "./Pages/CreateNewForm/CreateNewForm";
 import Edit from "./Pages/Edit/Edit";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import { Toaster } from "react-hot-toast";
-import DetailInformationEachContact from "./Pages/DetailInformationEachContact/DetailInformationEachContact";
+import DetailInformationEachContact from "./Pages/DetailInfo/DetailInfo";
 function App() {
 	const [contacts, setContacts] = useState(
 		JSON.parse(localStorage.getItem("contacts")) || []
@@ -17,7 +17,7 @@ function App() {
 	const data = { contacts, setContacts, eachNewIdContact, setEachNewIdContact };
 	return (
 		<MainContext.Provider value={data}>
-			<Toaster position="top-right"
+			<Toaster position="bottom-right"
 				toastOptions={{
 					duration: 2000,
 					style: {
@@ -38,7 +38,7 @@ function App() {
 				<Route path="/contacts" element={<Contacts />} />
 				<Route path="/contacts/new" element={<CreateNewForm />} />
 				<Route path="/contacts/edit" element={<Edit />} />
-				<Route path="/contacts/detail" element={<DetailInformationEachContact />} />
+				<Route path="/contacts/detail:id" element={<DetailInformationEachContact />} />
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</MainContext.Provider>

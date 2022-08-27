@@ -16,10 +16,11 @@ function Edit() {
 	const id5 = useId();
 	const id6 = useId();
 	const id7 = useId();
+
 	return (
 		<div className="Edit">
 			<Link to="/contacts" className="getToContacts">
-				Əlaqələr səhifəsinə get
+				←←←
 			</Link>
 			<form>
 				<div>
@@ -73,14 +74,14 @@ function Edit() {
 								id="occupationChoose"
 							>
 								<optgroup label="Vəzifəniz:">
-									<option selected={eachNewIdContact?.occupation === 'Front-End Developer' ? true : false} value="Front-End Developer">
+									<option selected={eachNewIdContact?.occupation === 'Front-End Developer' ? true : false} defaultValue="Front-End Developer">
 										Front-End Developer
 									</option>
-									<option selected={eachNewIdContact?.occupation === 'Back-End Developer' ? true : false} value="Back-End Developer">Back-End Developer</option>
-									<option selected={eachNewIdContact?.occupation === 'Full Stact Developer' ? true : false} value="Full Stact Developer">
+									<option selected={eachNewIdContact?.occupation === 'Back-End Developer' ? true : false} defaultValue="Back-End Developer">Back-End Developer</option>
+									<option selected={eachNewIdContact?.occupation === 'Full Stact Developer' ? true : false} defaultValue="Full Stact Developer">
 										Full Stact Developer
 									</option>
-									<option selected={eachNewIdContact?.occupation === 'Node JS MERN Developer' ? true : false} value="Node JS MERN Developer">
+									<option selected={eachNewIdContact?.occupation === 'Node JS MERN Developer' ? true : false} defaultValue="Node JS MERN Developer">
 										Node JS MERN Developer
 									</option>
 								</optgroup>
@@ -92,8 +93,8 @@ function Edit() {
 								id="genderChoose"
 							>
 								<optgroup label="Cinsiyyət:">
-									<option selected={eachNewIdContact?.gender === 'Kişi' ? true : false} value="Kişi">Kişi</option>
-									<option selected={eachNewIdContact?.gender === 'Qadın' ? true : false} value="Qadın">Qadın</option>
+									<option selected={eachNewIdContact?.gender === 'Kişi' ? true : false} defaultValue="Kişi">Kişi</option>
+									<option selected={eachNewIdContact?.gender === 'Qadın' ? true : false} defaultValue="Qadın">Qadın</option>
 								</optgroup>
 							</select>
 						</div>

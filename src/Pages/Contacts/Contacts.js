@@ -15,9 +15,6 @@ function Contacts() {
 	const handleEdit = (contact) => {
 		setEachNewIdContact(contact)
 	}
-	const handleInfo = (contact) => {
-		setEachNewIdContact(contact)
-	}
 	const handleDelete = (id) => {
 		const deleted = contacts.filter((contact) => contact.id !== id)
 		setContacts(deleted)
@@ -47,12 +44,12 @@ function Contacts() {
 							<td>{contact.dadName}</td>
 							<td>{contact.occupation}</td>
 							<td className="info">
-								<Link onClick={() => handleInfo(contact)} to="/contacts/detail">
+								<Link className="infoClass" to={`/contacts/detail${contact.id}`}>
 									<BsInfoCircle className="icon" />
 								</Link>
 							</td>
 							<td className="edit">
-								<Link onClick={() => handleEdit(contact)} to="/contacts/edit">
+								<Link onClick={()=> handleEdit(contact)} to="/contacts/edit">
 									<GrFormEdit className="icon" />
 								</Link>
 							</td>

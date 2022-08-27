@@ -36,7 +36,7 @@ function CreateNewForm() {
 	return (
 		<div className="CreateNewForm">
 			<Link to="/contacts" className="getToContacts">
-				Əlaqələr sihayısı səhifəsinə get
+				←←←
 			</Link>
 			<form onSubmit={handleSubmit}>
 				<div>

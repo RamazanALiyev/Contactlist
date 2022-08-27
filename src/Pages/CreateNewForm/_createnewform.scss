@@ -1,19 +1,20 @@
 .CreateNewForm {
 	.getToContacts {
-		color: rgb(166, 203, 240);
+		color: olivedrab;
 		font-style: italic;
 		cursor: pointer;
 		display: inline-block;
-		margin: 20px 50px 0px;
+		margin: 50px 80px 0px;
 		padding-bottom: 1px;
 		text-decoration: none;
-		border-bottom: 1px dashed rgb(166, 203, 240);
+		font-size: 20px;
 	}
 	form {
 		height: calc(100vh - 12rem);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		margin-top: -30px;
 		div {
 			display: flex;
 			justify-content: center;
