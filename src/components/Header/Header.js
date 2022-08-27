@@ -15,8 +15,12 @@ function Header() {
 			{params.pathname === "/contacts/edit" && (
 				<span className="HeaderTextTitle">Mövcud əlaqənin dəyişdirilməsi</span>
 			)}
+			{params.pathname === "/contacts/detail" && (
+				<span className="HeaderTextTitle">Mövcud əlaqə haqqlnda ətraflı məlumat</span>
+			)}
 			{params.pathname !== "/contacts" &&
 				params.pathname !== "/contacts/new" &&
+				params.pathname !== "/contacts/detail" &&
 				params.pathname !== "/contacts/edit" && (
 					<span className="HeaderTextTitle">Belə bir səhifə mövcud deyil</span>
 				)}

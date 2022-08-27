@@ -2,6 +2,7 @@
 	width: 100%;
 	display: flex;
 	justify-content: center;
+
 	table.contacts {
 		margin-top: 80px;
 		border-collapse: collapse;
@@ -9,6 +10,7 @@
 		flex-direction: column;
 		width: 90%;
 		border: 1px solid black;
+
 		thead {
 			tr {
 				display: block;
@@ -18,16 +20,36 @@
 				height: 50px;
 				border-bottom: 1px solid black;
 				background-color: lightgray;
+
 				th {
 					display: flex;
 					align-items: center;
 					justify-content: center;
 					width: calc(100% / 7);
 					border-right: 1px solid rgb(0, 0, 0, 0.3);
+					font-weight: 400;
+					font-style: italic;
 				}
 			}
 		}
 		tbody {
+			tr.emptyContactList {
+				display: inline-block;
+				width: 100%;
+				height: auto;
+				td {
+					border: 1px solid lightgray;
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					height: 30vh;
+					font-size: 22px;
+					letter-spacing: 2px;
+					color: #3e849e;
+				}
+			}
+
 			tr {
 				display: block;
 				height: 20px;
@@ -38,6 +60,7 @@
 				&:last-child {
 					border-bottom: 1px solid transparent;
 				}
+
 				td {
 					display: flex;
 					align-items: center;
@@ -47,24 +70,31 @@
 					border-right: 1px solid lightgray;
 					cursor: pointer;
 				}
+
 				td.info {
 					color: orange;
+
 					&:hover .icon {
 						animation: animate 800ms linear infinite;
 					}
 				}
+
 				td.edit {
 					font-size: 20px;
-                    &:hover .icon {
+
+					&:hover .icon {
 						animation: animate 800ms linear infinite;
 					}
-					.link{
+
+					.link {
 						text-decoration: none;
 					}
 				}
+
 				td.delete {
 					color: crimson;
-                    &:hover .icon {
+
+					&:hover .icon {
 						animation: animate 800ms linear infinite;
 					}
 				}
@@ -77,15 +107,19 @@
 	0% {
 		transform: translateY(0px);
 	}
-    25%{
+
+	25% {
 		transform: translateY(-5px);
-    }
-    50%{
+	}
+
+	50% {
 		transform: translateY(0px);
-    }
-    75%{
+	}
+
+	75% {
 		transform: translateY(5px);
-    }
+	}
+
 	100% {
 		transform: translateY(0px);
 	}

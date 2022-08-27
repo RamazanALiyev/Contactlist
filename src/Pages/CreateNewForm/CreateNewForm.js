@@ -3,8 +3,12 @@ import "./_createnewform.scss";
 import { Link, useNavigate } from "react-router-dom";
 import reducer from "../../utils/addToNewContacts";
 import { useContext, MainContext } from "../../context";
+import { nanoid } from "nanoid";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 function CreateNewForm() {
+	const id = nanoid()
 	let navigate = useNavigate();
 	const { contacts, setContacts } = useContext(MainContext);
 	const [initailVal, setInitialVal] = useState({
@@ -16,6 +20,7 @@ function CreateNewForm() {
 		gender: "Kişi",
 		additionalInformation: "",
 		newAlertsInfo: false,
+		id: id
 	});
 	const [state, dispatch] = useReducer(reducer, initailVal);
 	const handleSubmit = (e) => {
@@ -24,6 +29,7 @@ function CreateNewForm() {
 			type: "addToNewContact",
 			payload: setContacts([...contacts, initailVal]),
 		});
+		toast.success('Əlaqələr siyahısına yeni əlaqə əlavə edildi!')
 		navigate("/contacts");
 	};
 
@@ -46,6 +52,7 @@ function CreateNewForm() {
 												name: e.target.value,
 											}))
 										}
+										required
 										value={initailVal.name}
 										id="name"
 										type="text"
@@ -57,6 +64,7 @@ function CreateNewForm() {
 								<td>
 									<label htmlFor="surname">Soyad</label>
 									<input
+										required
 										id="surname"
 										type="text"
 										placeholder="Soyadı qeyd edin..."
@@ -74,6 +82,7 @@ function CreateNewForm() {
 								<td>
 									<label htmlFor="dad">Ata adı</label>
 									<input
+										required
 										id="dad"
 										type="text"
 										placeholder="Ata adını qeyd edin..."
@@ -91,6 +100,7 @@ function CreateNewForm() {
 								<td>
 									<label htmlFor="mail">Email</label>
 									<input
+										required
 										id="mail"
 										type="email"
 										placeholder="Email qeyd edin..."
@@ -158,6 +168,7 @@ function CreateNewForm() {
 								</td>
 								<td>
 									<textarea
+										required
 										onChange={(e) =>
 											setInitialVal((initailVal) => ({
 												...initailVal,
