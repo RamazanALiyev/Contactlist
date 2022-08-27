@@ -8,7 +8,9 @@ import CreateNewForm from "./Pages/CreateNewForm/CreateNewForm";
 import Edit from "./Pages/Edit/Edit";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 function App() {
-	const [contacts, setContacts] = useState([]);
+	const [contacts, setContacts] = useState(
+		JSON.parse(localStorage.getItem("contacts")) || []
+	);
 	const data = { contacts, setContacts };
 	return (
 		<MainContext.Provider value={data}>

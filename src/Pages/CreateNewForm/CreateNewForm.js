@@ -1,23 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import "./_createnewform.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import reducer from "../../utils/addToNewContacts";
+import { useContext, MainContext } from "../../context";
 
 function CreateNewForm() {
+	let navigate = useNavigate();
+	const { contacts, setContacts } = useContext(MainContext);
 	const [initailVal, setInitialVal] = useState({
 		name: "",
 		surname: "",
 		dadName: "",
 		mail: "",
-		occupation: 'Front-End Developer',
+		occupation: "Front-End Developer",
 		gender: "Kişi",
 		additionalInformation: "",
 		newAlertsInfo: false,
 	});
+	const [state, dispatch] = useReducer(reducer, initailVal);
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		dispatch({
+			type: "addToNewContact",
+			payload: setContacts([...contacts, initailVal]),
+		});
+		navigate("/contacts");
 	};
-	console.log(initailVal);
+
 	return (
 		<div className="CreateNewForm">
 			<Link to="/contacts" className="getToContacts">
@@ -100,28 +109,40 @@ function CreateNewForm() {
 					<div className="centerAddOccupyandGender">
 						<div className="occupation">
 							<label htmlFor="occupationChoose">Vəzifə:</label>
-							<select onChange={(e) =>
-								setInitialVal((initailVal) => ({
-									...initailVal,
-									occupation: e.target.value,
-								}))
-							} id='occupationChoose'>
+							<select
+								onChange={(e) =>
+									setInitialVal((initailVal) => ({
+										...initailVal,
+										occupation: e.target.value,
+									}))
+								}
+								id="occupationChoose"
+							>
 								<optgroup label="Vəzifəniz:">
-									<option value="Front-End Developer">Front-End Developer</option>
+									<option value="Front-End Developer">
+										Front-End Developer
+									</option>
 									<option value="Back-End Developer">Back-End Developer</option>
-									<option value="Full Stact Developer">Full Stact Developer</option>
-									<option value="Node JS MERN Developer">Node JS MERN Developer</option>
+									<option value="Full Stact Developer">
+										Full Stact Developer
+									</option>
+									<option value="Node JS MERN Developer">
+										Node JS MERN Developer
+									</option>
 								</optgroup>
 							</select>
 						</div>
 						<div className="gender">
 							<label htmlFor="genderChoose">Cinsiyyət:</label>
-							<select onChange={(e) =>
-								setInitialVal((initailVal) => ({
-									...initailVal,
-									gender: e.target.value,
-								}))
-							} id="genderChoose">
+							<select
+								onChange={(e) =>
+									setInitialVal((initailVal) => ({
+										...initailVal,
+										gender: e.target.value,
+									}))
+								}
+								id="genderChoose"
+							>
 								<optgroup label="Cinsiyyət:">
 									<option value="Kişi">Kişi</option>
 									<option value="Qadın">Qadın</option>
@@ -174,32 +195,3 @@ function CreateNewForm() {
 }
 
 export default CreateNewForm;
-
-
-
-// {/* <tr>
-// 	<td>
-// 		<label>Vəzifə</label>
-// 	</td>
-// 	<td>
-// 		<input
-// 			className="cb"
-// 			defaultChecked
-// 			id="id1"
-// 			type="checkbox"
-// 		/>
-// 		<label htmlFor="id1">Front-End Developer</label>
-// 	</td>
-// 	<td>
-// 		<input className="cb" id="id2" type="checkbox" />
-// 		<label htmlFor="id2">Back-End Developer</label>
-// 	</td>
-// 	<td>
-// 		<input className="cb" id="id3" type="checkbox" />
-// 		<label htmlFor="id3">Full Stack Developer</label>
-// 	</td>
-// 	<td>
-// 		<input className="cb" id="id4" type="checkbox" />
-// 		<label htmlFor="id4">React Native Developer</label>
-// 	</td>
-// </tr> */}

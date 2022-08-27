@@ -88,20 +88,27 @@
 					}
 				}
 			}
-			div.centerAddOccupyandGender{
+			div.centerAddOccupyandGender {
 				border: 1px solid #b5c7e6;
 				border-radius: 10px;
 				width: 30%;
 				height: 100%;
 				display: flex;
+				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				div.occupation{
+				div.occupation {
 					width: 100%;
 					display: flex;
 					flex-direction: column;
-					label{margin-bottom: 10px;}
-					#occupationChoose{
+					label {
+						margin-bottom: 10px;
+					}
+					margin-bottom: 20px;
+					label {
+						color: dodgerblue;
+					}
+					#occupationChoose {
 						appearance: none;
 						padding: 10px;
 						width: 200px;
@@ -110,12 +117,15 @@
 						border: 1px solid #b5c7e6;
 					}
 				}
-				div.gender{
+				div.gender {
 					width: 100%;
 					display: flex;
 					flex-direction: column;
-					label{margin-bottom: 10px;}
-					#genderChoose{
+					label {
+						margin-bottom: 10px;
+						color: dodgerblue
+					}
+					#genderChoose {
 						position: relative;
 						appearance: none;
 						padding: 10px;
