@@ -1,23 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import "./_edit.scss";
 import { Link } from "react-router-dom";
 import { MainContext, useContext } from "../../context";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import reducer from "../../utils/addToNewContacts";
 
 function Edit() {
-	const { contacts } = useContext(MainContext);
+	const { contacts, setContacts } = useContext(MainContext);
 	const params = useParams();
+	let setNavigate = useNavigate();
 	const [eachDetailFinds, setEachDetailFinds] = useState("");
+	const [neweachDetailFinds, newSetEachDetailFinds] = useState("");
 	useEffect(() => {
 		const findDetails = contacts.find((contact) => contact.id === params.id);
 		setEachDetailFinds(findDetails);
+		newSetEachDetailFinds(findDetails);
 	}, [contacts, params.id]);
+	console.log("cur", eachDetailFinds);
+	console.log("set", neweachDetailFinds);
+	const [, dispatch] = useReducer(reducer, neweachDetailFinds);
+	const edited = contacts.filter((contact) => contact.id !== params.id);
+	const setHandleSubmit = (e) => {
+		e.preventDefault();
+		if (
+			eachDetailFinds.name !== neweachDetailFinds.name ||
+			eachDetailFinds.surname !== neweachDetailFinds.surname ||
+			eachDetailFinds.dadName !== neweachDetailFinds.dadName ||
+			eachDetailFinds.mail !== neweachDetailFinds.mail ||
+			eachDetailFinds.occupation !== neweachDetailFinds.occupation ||
+			eachDetailFinds.gender !== neweachDetailFinds.gender ||
+			eachDetailFinds.additionalInformation !==
+				neweachDetailFinds.additionalInformation ||
+			eachDetailFinds.newAlertsInfo !== neweachDetailFinds.newAlertsInfo
+		) {
+			dispatch({
+				type: "setToCurrentContact",
+				payload: setContacts([neweachDetailFinds, ...edited]),
+			});
+			toast.success("Mövcud əlaqə əlaqələr siyahısında yeniləndi");
+			setNavigate("/contacts");
+		} else {
+			toast.error("Mövcud əlaqədə heç bir dəyişiklik edilməyib");
+		}
+	};
 	return (
 		<div className="Edit">
 			<Link to="/contacts" className="getToContacts">
 				←←←
 			</Link>
-			<form>
+			<form onSubmit={setHandleSubmit}>
 				<div>
 					<table>
 						<tbody>
@@ -29,6 +61,12 @@ function Edit() {
 										type="text"
 										defaultValue={eachDetailFinds?.name}
 										placeholder="Adı qeyd edin..."
+										onChange={(e) =>
+											newSetEachDetailFinds((initailVal) => ({
+												...initailVal,
+												name: e.target.value,
+											}))
+										}
 									/>
 								</td>
 							</tr>
@@ -40,6 +78,12 @@ function Edit() {
 										id="surname"
 										type="text"
 										placeholder="Soyadı qeyd edin..."
+										onChange={(e) =>
+											newSetEachDetailFinds((initailVal) => ({
+												...initailVal,
+												surname: e.target.value,
+											}))
+										}
 									/>
 								</td>
 							</tr>
@@ -51,6 +95,12 @@ function Edit() {
 										id="dad"
 										type="text"
 										placeholder="Ata adını qeyd edin..."
+										onChange={(e) =>
+											newSetEachDetailFinds((initailVal) => ({
+												...initailVal,
+												dadName: e.target.value,
+											}))
+										}
 									/>
 								</td>
 							</tr>
@@ -62,6 +112,12 @@ function Edit() {
 										id="email"
 										type="email"
 										placeholder="Email qeyd edin..."
+										onChange={(e) =>
+											newSetEachDetailFinds((initailVal) => ({
+												...initailVal,
+												mail: e.target.value,
+											}))
+										}
 									/>
 								</td>
 							</tr>
@@ -70,7 +126,16 @@ function Edit() {
 					<div className="centerAddOccupyandGender">
 						<div className="occupation">
 							<label htmlFor="occupationChoose">Vəzifə:</label>
-							<select id="occupationChoose" value={eachDetailFinds?.occupation}>
+							<select
+								id="occupationChoose"
+								value={eachDetailFinds?.occupation}
+								onChange={(e) =>
+									newSetEachDetailFinds((initailVal) => ({
+										...initailVal,
+										occupation: e.target.value,
+									}))
+								}
+							>
 								<optgroup label="Vəzifəniz:">
 									<option defaultValue="Front-End Developer">
 										Front-End Developer
@@ -89,7 +154,16 @@ function Edit() {
 						</div>
 						<div className="gender">
 							<label htmlFor="genderChoose">Cinsiyyət:</label>
-							<select id="genderChoose" value={eachDetailFinds?.gender}>
+							<select
+								id="genderChoose"
+								value={eachDetailFinds?.gender}
+								onChange={(e) =>
+									newSetEachDetailFinds((initailVal) => ({
+										...initailVal,
+										gender: e.target.value,
+									}))
+								}
+							>
 								<optgroup label="Cinsiyyət:">
 									<option defaultValue="Kişi">Kişi</option>
 									<option defaultValue="Qadın">Qadın</option>
@@ -106,17 +180,28 @@ function Edit() {
 								<td>
 									<textarea
 										defaultValue={eachDetailFinds?.additionalInformation}
+										onChange={(e) =>
+											newSetEachDetailFinds((initailVal) => ({
+												...initailVal,
+												additionalInformation: e.target.value,
+											}))
+										}
 									/>
 								</td>
 							</tr>
 							<tr className="agreeWithApp">
 								<td>
 									<input
-										checked={eachDetailFinds?.newAlertsInfo ? true : false}
+										checked={neweachDetailFinds?.newAlertsInfo ? true : false}
 										id="newNotification"
-										readOnly
 										className="cb"
 										type="checkbox"
+										onChange={() =>
+											newSetEachDetailFinds((initailVal) => ({
+												...initailVal,
+												newAlertsInfo: !neweachDetailFinds.newAlertsInfo,
+											}))
+										}
 									/>
 									<label htmlFor="newNotification">
 										Yeniliklər barədə məlumat almaq istəyirəm

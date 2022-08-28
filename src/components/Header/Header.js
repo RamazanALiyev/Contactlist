@@ -4,7 +4,6 @@ import { useLocation, Link } from "react-router-dom";
 
 function Header() {
 	const params = useLocation();
-	console.log(params)
 	return (
 		<div className="Header">
 			{params.pathname === "/contacts" && (

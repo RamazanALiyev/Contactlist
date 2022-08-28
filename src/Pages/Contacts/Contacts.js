@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BsInfoCircle } from "react-icons/bs";
 import { GrFormEdit } from "react-icons/gr";
 import { AiTwotoneDelete } from "react-icons/ai";
+import { IoIosNotifications } from "react-icons/io";
 import "./_contacts.scss";
 import { Link } from "react-router-dom";
 import { useContext, MainContext } from "../../context";
@@ -14,6 +15,7 @@ function Contacts() {
 	}, [contacts]);
 	const handleDelete = (id) => {
 		const deleted = contacts.filter((contact) => contact.id !== id);
+		console.log("deletedddd", deleted);
 		setContacts(deleted);
 		console.log(contacts);
 		localStorage.setItem("contacts", JSON.stringify(deleted));
@@ -48,7 +50,12 @@ function Contacts() {
 					) : (
 						contacts.map((contact, index) => (
 							<tr key={index}>
-								<td>{contact.name}</td>
+								<td>
+									{contact.newAlertsInfo ? (
+										<IoIosNotifications className="iconSound" />
+									) : null}
+									{contact.name}
+								</td>
 								<td>{contact.surname}</td>
 								<td>{contact.dadName}</td>
 								<td>{contact.occupation}</td>
