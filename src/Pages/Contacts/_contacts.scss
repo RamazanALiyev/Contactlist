@@ -76,10 +76,11 @@
 						position: relative;
 						.iconSound {
 							position: absolute;
-							top: 36%;
-							left: 20px;
-							color: green;
-							font-size: 18px;
+							top: 0%;
+							left: 0px;
+							transform: rotate(-30deg);
+							color: orange;
+							font-size: 20px;
 							animation: 1s animateNotificationContact linear infinite;
 						}
 					}
@@ -147,18 +148,18 @@
 
 @keyframes animateNotificationContact {
 	0% {
-		transform: rotate(0);
+		transform: rotate(-60deg);
 	}
 	25% {
-		transform: rotate(15deg);
+		transform: rotate(-30deg);
 	}
 	50% {
-		transform: rotate(0);
+		transform: rotate(-10deg);
 	}
 	75% {
-		transform: rotate(-15deg);
+		transform: rotate(-30deg);
 	}
 	100% {
-		transform: rotate(0);
+		transform: rotate(-60deg);
 	}
 }

@@ -59,7 +59,11 @@ function Contacts() {
 								<td>{contact.surname}</td>
 								<td>{contact.dadName}</td>
 								<td>{contact.occupation}</td>
-								<td className="info">
+								<td
+									className="info"
+									title="Click for information
+"
+								>
 									<Link
 										className="infoClass"
 										to={`/contacts/detail${contact.id}`}
@@ -67,12 +71,12 @@ function Contacts() {
 										<BsInfoCircle className="icon" />
 									</Link>
 								</td>
-								<td className="edit">
+								<td className="edit" title="Click for changes">
 									<Link to={`/contacts/edit${contact.id}`}>
 										<GrFormEdit className="icon" />
 									</Link>
 								</td>
-								<td className="delete">
+								<td className="delete" title="Click to delete">
 									<AiTwotoneDelete
 										onClick={() => handleDelete(contact.id)}
 										className="icon"
