@@ -6,160 +6,25 @@
 		margin: 40px 80px 30px;
 		font-size: 22px;
 	}
-	table.contacts {
-		margin-top: 20px;
-		border-collapse: collapse;
-		display: flex;
-		flex-direction: column;
-		width: 90%;
-		border: 1px solid black;
-		margin: 0 auto;
-		thead {
-			tr {
-				display: block;
-				height: 20px;
-				width: 100%;
-				display: flex;
-				height: 50px;
-				border-bottom: 1px solid black;
-				background-color: lightgray;
-
-				th {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					width: calc(100% / 7);
-					border-right: 1px solid rgb(0, 0, 0, 0.3);
-					font-weight: 400;
-					font-style: italic;
-				}
-			}
-		}
-
-		tbody {
-			tr.emptyContactList {
-				display: inline-block;
-				width: 100%;
-				height: auto;
-				td {
-					border: 1px solid lightgray;
-					width: 100%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					height: 30vh;
-					font-size: 22px;
-					letter-spacing: 2px;
-					color: #3e849e;
-				}
-			}
-
-			tr {
-				display: block;
-				height: 20px;
-				width: 100%;
-				display: flex;
-				height: 50px;
-				border-bottom: 1px solid lightgray;
-				&:last-child {
-					border-bottom: 1px solid transparent;
-				}
-				td {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					width: calc(100% / 7);
-					text-align: center;
-					border-right: 1px solid lightgray;
-					cursor: pointer;
-					&:first-child {
-						position: relative;
-						.iconSound {
-							position: absolute;
-							top: 0%;
-							left: 0px;
-							transform: rotate(-30deg);
-							color: orange;
-							font-size: 20px;
-							animation: 1s animateNotificationContact linear infinite;
-						}
-					}
-				}
-
-				td.info {
-					color: orange;
-
-					&:hover .icon {
-						animation: animate 800ms linear infinite;
-					}
-				}
-
-				td.info {
-					.infoClass {
-						color: orange;
-					}
-				}
-
-				td.edit {
-					font-size: 20px;
-
-					&:hover .icon {
-						animation: animate 800ms linear infinite;
-					}
-
-					.link {
-						text-decoration: none;
-					}
-				}
-
-				td.delete {
-					color: crimson;
-
-					&:hover .icon {
-						animation: animate 800ms linear infinite;
-					}
-				}
-			}
-		}
+	.icon1{
+		cursor: pointer;
+		font-size: 18px;
+		color: dodgerblue;
+	}
+	.icon2{
+		cursor: pointer;
+		font-size: 19px;
+	}
+	.icon3{
+		cursor: pointer;
+		font-size: 18px;
+		color: crimson;
 	}
 }
 
-@keyframes animate {
-	0% {
-		transform: translateY(0px);
-	}
-
-	25% {
-		transform: translateY(-5px);
-	}
-
-	50% {
-		transform: translateY(0px);
-	}
-
-	75% {
-		transform: translateY(5px);
-	}
-
-	100% {
-		transform: translateY(0px);
-	}
+.ant-pagination.ant-table-pagination.ant-table-pagination-right {
+	display: none;
 }
-
-@keyframes animateNotificationContact {
-	0% {
-		transform: rotate(-60deg);
-	}
-	25% {
-		transform: rotate(-30deg);
-	}
-	50% {
-		transform: rotate(-10deg);
-	}
-	75% {
-		transform: rotate(-30deg);
-	}
-	100% {
-		transform: rotate(-60deg);
-	}
+th.ant-table-cell {
+	text-align: center;
 }

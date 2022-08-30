@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { BsInfoCircle } from "react-icons/bs";
 import { GrFormEdit } from "react-icons/gr";
 import { AiTwotoneDelete } from "react-icons/ai";
-import { IoIosNotifications } from "react-icons/io";
 import "./_contacts.scss";
 import { Link } from "react-router-dom";
 import { useContext, MainContext } from "../../context";
 import { toast } from "react-hot-toast";
+import { Space, Table } from "antd";
+const { Column, ColumnGroup } = Table;
 
 function Contacts() {
 	const { contacts, setContacts } = useContext(MainContext);
@@ -30,63 +31,33 @@ function Contacts() {
 					Əlaqələr siyahısı {contacts.length} nəfərdən ibarətdir!
 				</p>
 			)}
-			<table className="contacts">
-				<thead>
-					<tr>
-						<th>Ad</th>
-						<th>Soyad</th>
-						<th>Ata adı</th>
-						<th>İxtisas</th>
-						<th>Ətraflı məlumat</th>
-						<th>Düzəliş</th>
-						<th>Sil</th>
-					</tr>
-				</thead>
-				<tbody>
-					{contacts.length === 0 ? (
-						<tr className="emptyContactList">
-							<td>Əlaqələr siyahısı boşdur!</td>
-						</tr>
-					) : (
-						contacts.map((contact, index) => (
-							<tr key={index}>
-								<td>
-									{contact.newAlertsInfo ? (
-										<IoIosNotifications className="iconSound" />
-									) : null}
-									{contact.name}
-								</td>
-								<td>{contact.surname}</td>
-								<td>{contact.dadName}</td>
-								<td>{contact.occupation}</td>
-								<td
-									className="info"
-									title="Click for information
-"
-								>
-									<Link
-										className="infoClass"
-										to={`/contacts/detail${contact.id}`}
-									>
-										<BsInfoCircle className="icon" />
-									</Link>
-								</td>
-								<td className="edit" title="Click for changes">
-									<Link to={`/contacts/edit${contact.id}`}>
-										<GrFormEdit className="icon" />
-									</Link>
-								</td>
-								<td className="delete" title="Click to delete">
-									<AiTwotoneDelete
-										onClick={() => handleDelete(contact.id)}
-										className="icon"
-									/>
-								</td>
-							</tr>
-						))
+			<Table className="contacts"  dataSource={contacts} bordered style={{width: "90%", margin: '0 auto'}}>
+				<ColumnGroup title="Ad, Soyad, Ata adı">
+					<Column title="Ad" dataIndex="name" key="name" />
+					<Column title="Soyad" dataIndex="surname" key="surname" />
+					<Column title="Ata adı" dataIndex="dadName" key="dadName" />
+				</ColumnGroup>
+				<Column  title="Vəzifə" dataIndex="occupation" key="occupation" />
+				<Column
+					title="Action"
+					key="action"
+					render={(_, record) => (
+						<Space size="middle">
+							<Link className="infoClass" to={`/contacts/detail${record.id}`}>
+								{" "}
+								<BsInfoCircle className="icon" />
+							</Link>
+							<Link to={`/contacts/edit${record.id}`}>
+								<GrFormEdit className="icon" />
+							</Link>
+							<AiTwotoneDelete
+								onClick={() => handleDelete(record.id)}
+								className="icon"
+							/>
+						</Space>
 					)}
-				</tbody>
-			</table>
+				/>
+			</Table>
 		</div>
 	);
 }

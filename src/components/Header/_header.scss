@@ -6,10 +6,15 @@
 	align-items: center;
 	justify-content: space-between;
 	background-color: #3e849e;
- 	.HeaderTextTitle {
-		color: #fff;
-		font-size: 24px;
+	.site-page-header {
 		margin-left: 10%;
+		.ant-page-header-heading-title {
+			margin-right: 0;
+			margin-bottom: 0;
+			color: #fff;
+			font-weight: normal;
+			font-size: 24px;
+		}
 	}
 	.link {
 		display: inline-block;
