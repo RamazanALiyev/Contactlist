@@ -17,8 +17,6 @@ function Edit() {
 		setEachDetailFinds(findDetails);
 		newSetEachDetailFinds(findDetails);
 	}, [contacts, params.id]);
-	console.log("cur", eachDetailFinds);
-	console.log("set", neweachDetailFinds);
 	const [, dispatch] = useReducer(reducer, neweachDetailFinds);
 	const edited = contacts.filter((contact) => contact.id !== params.id);
 	const setHandleSubmit = (e) => {
@@ -31,7 +29,7 @@ function Edit() {
 			eachDetailFinds.occupation !== neweachDetailFinds.occupation ||
 			eachDetailFinds.gender !== neweachDetailFinds.gender ||
 			eachDetailFinds.additionalInformation !==
-				neweachDetailFinds.additionalInformation ||
+			neweachDetailFinds.additionalInformation ||
 			eachDetailFinds.newAlertsInfo !== neweachDetailFinds.newAlertsInfo
 		) {
 			dispatch({
@@ -57,6 +55,7 @@ function Edit() {
 								<td>
 									<label htmlFor="name">Ad</label>
 									<input
+										required
 										id="name"
 										type="text"
 										defaultValue={eachDetailFinds?.name}
@@ -74,6 +73,7 @@ function Edit() {
 								<td>
 									<label htmlFor="surname">Soyad</label>
 									<input
+										required
 										defaultValue={eachDetailFinds?.surname}
 										id="surname"
 										type="text"
@@ -91,6 +91,7 @@ function Edit() {
 								<td>
 									<label htmlFor="dad">Ata adı</label>
 									<input
+										required
 										defaultValue={eachDetailFinds?.dadName}
 										id="dad"
 										type="text"
@@ -108,6 +109,7 @@ function Edit() {
 								<td>
 									<label htmlFor="email">Email</label>
 									<input
+										required
 										defaultValue={eachDetailFinds?.mail}
 										id="email"
 										type="email"
@@ -179,6 +181,7 @@ function Edit() {
 								</td>
 								<td>
 									<textarea
+										required
 										defaultValue={eachDetailFinds?.additionalInformation}
 										onChange={(e) =>
 											newSetEachDetailFinds((initailVal) => ({
