@@ -22,6 +22,13 @@ function Edit() {
 	const setHandleSubmit = (e) => {
 		e.preventDefault();
 		if (
+			neweachDetailFinds.name.trim().length === 0 ||
+			neweachDetailFinds.surname.trim().length === 0 ||
+			neweachDetailFinds.dadName.trim().length === 0 ||
+			neweachDetailFinds.additionalInformation.trim().length === 0
+		) {
+			toast.error('Dəyərlər boş göndərilə bilməz')
+		} else if (
 			eachDetailFinds.name !== neweachDetailFinds.name ||
 			eachDetailFinds.surname !== neweachDetailFinds.surname ||
 			eachDetailFinds.dadName !== neweachDetailFinds.dadName ||
@@ -29,7 +36,7 @@ function Edit() {
 			eachDetailFinds.occupation !== neweachDetailFinds.occupation ||
 			eachDetailFinds.gender !== neweachDetailFinds.gender ||
 			eachDetailFinds.additionalInformation !==
-			neweachDetailFinds.additionalInformation ||
+				neweachDetailFinds.additionalInformation ||
 			eachDetailFinds.newAlertsInfo !== neweachDetailFinds.newAlertsInfo
 		) {
 			dispatch({

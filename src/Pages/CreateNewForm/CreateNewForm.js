@@ -22,14 +22,24 @@ function CreateNewForm() {
 		id: id,
 	});
 	const [, dispatch] = useReducer(reducer, initailVal);
+	console.log(initailVal.surname.trim().length);
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch({
-			type: "addToNewContact",
-			payload: setContacts([...contacts, initailVal]),
-		});
-		toast.success("Əlaqələr siyahısına yeni əlaqə əlavə edildi!");
-		navigate("/contacts");
+		if (
+			initailVal.name.trim().length !== 0 &&
+			initailVal.surname.trim().length !== 0 &&
+			initailVal.dadName.trim().length !== 0 &&
+			initailVal.additionalInformation.trim().length !== 0
+		) {
+			dispatch({
+				type: "addToNewContact",
+				payload: setContacts([...contacts, initailVal]),
+			});
+			toast.success("Əlaqələr siyahısına yeni əlaqə əlavə edildi!");
+			navigate("/contacts");
+		} else {
+			toast.error("Dəyərlər boş göndərilə bilməz");
+		}
 	};
 
 	return (
@@ -45,13 +55,13 @@ function CreateNewForm() {
 								<td>
 									<label htmlFor="name">Ad</label>
 									<input
+										required
 										onChange={(e) =>
 											setInitialVal((initailVal) => ({
 												...initailVal,
 												name: e.target.value,
 											}))
 										}
-										required
 										value={initailVal.name}
 										id="name"
 										type="text"
